@@ -17,19 +17,19 @@ router.get("/", (req, res) => {
 // Add orders to the db
 router.get("/placeOrder", (req, res) => {
   const data = {
-    orderType: "sand",
+    orderType: "gravel",
     orderQuantity: 2,
-    orderStatus: "received"
-  }
+    orderStatus: "received",
+  };
 
-  let {orderType, orderQuantity, orderStatus} = data;
+  let { orderType, orderQuantity, orderStatus } = data;
   Order.create({
     orderType,
     orderQuantity,
-    orderStatus
+    orderStatus,
   })
-  .then((orders) => console.log("The following are orders placed", orders))
-  .catch(err => console.log("Couldn't place order:", err))
-} )
+    .then((orders) => console.log("The following are orders placed", orders.dataValues))
+    .catch((err) => console.log("Couldn't place order:", err));
+});
 
 module.exports = router;
